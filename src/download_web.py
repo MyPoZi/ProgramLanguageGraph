@@ -38,7 +38,6 @@ def download_csv():
     urllib.request.install_opener(opener)
     try:
         urllib.request.urlretrieve(url, savename)
-        print(savename)
         return savename
     except (OSError, HTTPError) as e:
         print("ERROR")
@@ -50,7 +49,7 @@ def read_csv(data):
     program_language = list()
     program_rep = list()
 
-    for i in range(0, 19):
+    for i in range(20):
         program_language.append(csv_lst[i][0])
         program_rep.append(csv_lst[i][1])
     return program_language, program_rep
@@ -59,8 +58,6 @@ def read_csv(data):
 def main():
     savename = download_csv()
     program_language, program_rep = read_csv(savename)
-    print(program_language)
-    print(program_rep)
     insert_in_database(program_language, program_rep)
 
 

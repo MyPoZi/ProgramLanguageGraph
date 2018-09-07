@@ -13,3 +13,9 @@ pythonで書いたほうがダウンロード出来なかった場合の例外�
 `00 3 * * * python3 /home/kit/python/src/download_web.py`  
 
 毎日午前3時にcsvファイルを取ってきて、上位20言語とリポジトリ数をデータベースに格納する
+
+
+グラフ表示  
+
+`sudo yum install tkinter`  
+`sudo yum install python36u-tkinter`  
