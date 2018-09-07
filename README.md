@@ -1,7 +1,7 @@
 # ProgramLanguageGraph
 
 なぜ  
-`* * * * * wget -qO foo- "date +\%Y\%m\%d\%H\%M\%S\".html http://www.example.jp/`
+`* * * * * wget -qO foo- "date +\%Y\%m\%d\%H\%M\%S\".html http://www.example.jp/`  
 ではないのか(\`\`の都合で""に)
 
 pythonで書いたほうがダウンロード出来なかった場合の例外処理が書きやすく、cronも.pyの指定だけでいいため?  
@@ -9,7 +9,7 @@ pythonで書いたほうがダウンロード出来なかった場合の例外�
 `$ sqlite3 language.db`  
 `create table language(time text, language text, value integer);`  
 
-`crontab -e`
+`$ crontab -e`
 `00 3 * * * python3 /home/kit/python/src/download_web.py`  
 
 毎日午前3時にcsvファイルを取ってきて、上位20言語とリポジトリ数をデータベースに格納する
