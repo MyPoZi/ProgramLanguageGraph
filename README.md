@@ -5,10 +5,7 @@
 ではないのか(\`\`の都合で""に)
 
 pythonで書いたほうがダウンロード出来なかった場合の例外処理が書きやすく、cronも.pyの指定だけでいいため?  
-```
-$ sqlite3 language.db  
-sqlite> create table language(date text, language text, value integer);  
-```
+データベース作成自動化完成:tada:
 ```
 $ crontab -e  
 0 3 * * * python3 /home/kit/python/src/download_web.py  
