@@ -1,11 +1,11 @@
-import urllib.request
 import datetime
 import pandas as pd
 import sys
 import sqlite3
+import requests
 from requests import HTTPError
 
-dbpath = '../db/language.db'
+dbpath = '/home/kit/python/db/language.db'
 
 
 def insert_in_database(language, rep):
@@ -28,17 +28,14 @@ def insert_in_database(language, rep):
 
 def download_csv():
     url = "http://namaristats.com/datatable.csv"
+    request = requests.get(url)
     date = datetime.date.today().strftime("%Y%m%d")
-    savename = "../data/"+"lang" + date + ".csv"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0"
-    }
-    opener = urllib.request.build_opener()
-    opener.addheaders = [('User-agent', headers["User-Agent"])]
-    urllib.request.install_opener(opener)
+    save_name = "/home/kit/python/data/"+"lang" + date + ".csv"
     try:
-        urllib.request.urlretrieve(url, savename)
-        return savename
+        with open(save_name, "wb") as f:
+            f.write(request.content)
+            print("saved")
+        return save_name
     except (OSError, HTTPError) as e:
         print("ERROR")
         sys.exit()
@@ -56,8 +53,8 @@ def read_csv(data):
 
 
 def main():
-    savename = download_csv()
-    program_language, program_rep = read_csv(savename)
+    save_name = download_csv()
+    program_language, program_rep = read_csv(save_name)
     insert_in_database(program_language, program_rep)
 
 
