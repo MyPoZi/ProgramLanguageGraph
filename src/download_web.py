@@ -1,43 +1,28 @@
-import datetime
 import pandas as pd
 import sys
-import sqlite3
 import requests
+import subprocess
+import os
+import datetime
 from requests import HTTPError
 
-dbpath = '/home/kit/python/db/language.db'
-
-
-def insert_in_database(language, rep):
-    date = datetime.date.today().strftime("%Y/%m/%d")
-
-    connection = sqlite3.connect(dbpath)
-    cursor = connection.cursor()
-    for (l, r) in zip(language, rep):
-        sql = 'INSERT INTO LANGUAGE (time, language, value) values (?,?,?)'
-        value = (date, l, r)
-        try:
-            cursor.execute(sql, value)
-
-        except sqlite3.Error as e:
-            print('sqlite3.Error occurred:', e.args[0])
-
-    connection.commit()
-    connection.close()
+import check_update
+import data_storage
+import config
 
 
 def download_csv():
-    url = "http://namaristats.com/datatable.csv"
+    url = 'http://namaristats.com/datatable.csv'
     request = requests.get(url)
-    date = datetime.date.today().strftime("%Y%m%d")
-    save_name = "/home/kit/python/data/"+"lang" + date + ".csv"
+    date = datetime.date.today().strftime('%Y%m%d')
+    save_name = '/home/kit/python/data/' + 'lang' + date + '.csv'
     try:
-        with open(save_name, "wb") as f:
+        with open(save_name, 'wb') as f:
             f.write(request.content)
-            print("saved")
+            print('csv_saved')
         return save_name
     except (OSError, HTTPError) as e:
-        print("ERROR")
+        print('csv_ERROR:{0}'.format(e))
         sys.exit()
 
 
@@ -53,9 +38,14 @@ def read_csv(data):
 
 
 def main():
+    check_html = check_update.CheckUpdate(config.check_url['url'], config.check_url['path'])
+    if not check_html.download_check_html():  # true=>更新されているためcsvファイルを取ってくる処理に移行
+        sys.exit()
     save_name = download_csv()
     program_language, program_rep = read_csv(save_name)
-    insert_in_database(program_language, program_rep)
+    database = data_storage.DataStorage(config.db_config['db_file_path'], config.db_config['db_path'])
+    database.create_file()
+    database.insert_in_database(program_language, program_rep)
 
 
 if __name__ == '__main__':
