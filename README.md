@@ -5,9 +5,9 @@
 ではないのか(\`\`の都合で""に)
 
 pythonで書いたほうがダウンロード出来なかった場合の例外処理が書きやすく、cronも.pyの指定だけでいいため?  
-```aaaa
+```
 $ sqlite3 language.db  
-create table language(date text, language text, value integer);  
+sqlite> create table language(date text, language text, value integer);  
 ```
 ```
 $ crontab -e  
@@ -18,5 +18,5 @@ cronするときは絶対パスで書かなければならない
 
 グラフ表示  
 
-`sudo yum install tkinter`  
-`sudo yum install python36u-tkinter`  
+`$ sudo yum install tkinter`  
+`$ sudo yum install python36u-tkinter`  
