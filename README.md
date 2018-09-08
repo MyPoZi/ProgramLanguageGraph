@@ -7,7 +7,7 @@
 pythonで書いたほうがダウンロード出来なかった場合の例外処理が書きやすく、cronも.pyの指定だけでいいため?  
 
 `$ sqlite3 language.db`  
-`create table language(time text, language text, value integer);`  
+`create table language(date text, language text, value integer);`  
 
 `$ crontab -e`  
 `00 3 * * * python3 /home/kit/python/src/download_web.py`  
