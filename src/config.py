@@ -7,5 +7,6 @@ db_config = {
     'db_path': '/home/kit/python/db/language.db',
 }
 download_csv = {
-    'url': 'http://namaristats.com/datatable.csv',
+    'csv_url': 'http://namaristats.com/datatable.csv',
+    'csv_path': '/home/kit/python/csv/'
 }

@@ -8,11 +8,12 @@ class DataStorage:
         self.db_file_path = db_file_path
         self.db_path = db_path
 
-    def create_file(self):
+    def mkdir_db(self):
         filename = self.db_path
         file_path = os.path.dirname(filename)
         if not os.path.exists(file_path):
             os.makedirs(file_path)
+            print("ディレクトリ作成:{0}".format(file_path))
 
     def insert_in_database(self, language, rep):
         date = datetime.date.today().strftime("%Y/%m/%d")
