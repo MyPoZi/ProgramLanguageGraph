@@ -1,5 +1,36 @@
-# ProgramLanguageGraph
+ProgramLanguageGraph
+====
 
+Overview
+
+- [@here -> ココ!](http://namaristats.com/datatable)から毎日csvファイルをダウンロードして上位20言語とリポジトリ数データベースに格納するプログラム　
+
+## Demo
+
+
+## Requirement
+Docker 18.06.1-ce  
+
+## Usage
+
+## Install
+`$ git clone https://github.com/MyPoZi/ProgramLanguageGraph`  
+
+`$ docker build -t language-python:3.6 .`  
+
+
+cron  
+`$ docker run -it --name "language-python" language-python:3.6 bin/bash`  
+まだかけてない
+
+## Licence
+
+[MIT]()
+
+## Author
+
+[MyPoZi](https://github.com/mypozi)
+  
 なぜ  
 `* * * * * wget -qO foo- "date +\%Y\%m\%d\%H\%M\%S\".html http://www.example.jp/`  
 ではないのか(\`\`の都合で""に)  
