@@ -13,15 +13,24 @@ Docker 18.06.1-ce
 
 ## Usage
 
+`$ docker exec --it language-python /bin/bash`
+
+`$ cd /home/kit/python/db && sqlite3 language.db`  
+`> select * from language;`
+
 ## Install
 `$ git clone https://github.com/MyPoZi/ProgramLanguageGraph`  
 
+`$ cd ProgramLanguageGraph`
+
 `$ docker build -t language-python:3.6 .`  
 
+`$ docker run -d -it --name "language-python" language-python:3.6`  
 
-cron  
-`$ docker run -it --name "language-python" language-python:3.6 bin/bash`  
-まだかけてない
+```
+$ crontab -e  
+0 */8 * * * docker exec -it language-python:3.6 python3 /home/kit/python/src/download_web.py`  
+```
 
 ## Licence
 
