@@ -15,7 +15,7 @@ Docker 18.06.1-ce
 
 データベース表示方法
 
-`$ docker exec --it language-python /bin/bash`
+`$ docker exec -it language-python /bin/bash`
 
 `$ cd /home/kit/python/db && sqlite3 language.db`  
 `> select * from language;`
@@ -29,6 +29,7 @@ Docker 18.06.1-ce
 
 `$ docker run -d -it --name "language-python" language-python:3.6`  
 
+現在コンテナが消えるとデータベースなども消えるため永続化しなければならない  
 ```
 $ crontab -e  
 0 */8 * * * docker exec -it language-python:3.6 python3 /home/kit/python/src/download_web.py  
