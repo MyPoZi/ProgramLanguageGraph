@@ -40,8 +40,13 @@ $ crontab -e
 
 `$ docker rmi language-python:3.6`  
 
-※python3.6のイメージを消したい場合
+※python3.6のイメージを消したい場合  
 `$ docker rmi python:3.6`  
+
+データ永続化のためのボリュームを削除(language-pythonで使ったデータベースとcsvファイルとsrcを削除)  
+`$ docker volume rm language-data`  
+
+最後にcronを消去  
 
 ## Licence
 
@@ -51,10 +56,6 @@ $ crontab -e
 
 [MyPoZi](https://github.com/mypozi)
   
-なぜ  
-`* * * * * wget -qO foo- "date +\%Y\%m\%d\%H\%M\%S\".html http://www.example.jp/`  
-ではないのか(\`\`の都合で""に)  
-pythonで書いたほうがダウンロード出来なかった場合の例外処理が書きやすく、cronも.pyの指定だけでいいため?  
 
 - [x] データベース作成自動化完成:tada:
 ```
