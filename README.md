@@ -18,6 +18,9 @@ Docker 18.06.1-ce
 `$ cd /home/kit/python/db && sqlite3 language.db`  
 `> select * from language;`  
 
+ボリュームの場所を確認
+`$ docker inspect language-data`
+
 ## Install
 `$ git clone https://github.com/MyPoZi/ProgramLanguageGraph`  
 
