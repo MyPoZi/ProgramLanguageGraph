@@ -1,8 +1,6 @@
 ProgramLanguageGraph
 ====
 
-Overview
-
 - [@here -> ココ!](http://namaristats.com/datatable)から毎日csvファイルをダウンロードして上位20言語とリポジトリ数データベースに格納するプログラム　
 
 ## Demo
@@ -15,19 +13,19 @@ Docker 18.06.1-ce
 
 データベース表示方法
 
-`$ docker start language-python && docker exec -it language-python /bin/bash`  
+`$ docker start language-python && docker attach language-python`  
 
 `$ cd /home/kit/python/db && sqlite3 language.db`  
-`> select * from language;`
+`> select * from language;`  
 
 ## Install
 `$ git clone https://github.com/MyPoZi/ProgramLanguageGraph`  
 
-`$ cd ProgramLanguageGraph`
+`$ cd ProgramLanguageGraph`  
 
 `$ docker build -t language-python:3.6 .`  
 
-`$ docker run -it --name "language-python" -v language-data:/home/kit/python language-python:3.6`  
+`$ docker run -it --name "language-python" -v language-data:/home/kit/python language-python:3.6 /bin/bash`  
 
 毎日16時に実行  
 ```
@@ -38,7 +36,12 @@ $ crontab -e
 
 ## Unstall
 
+`$ docker rm language-python`  
 
+`$ docker rmi language-python:3.6`  
+
+※python3.6のイメージを消したい場合
+`$ docker rmi python:3.6`  
 
 ## Licence
 
