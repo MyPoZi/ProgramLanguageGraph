@@ -27,13 +27,10 @@ Docker 18.06.1-ce
 
 `$ docker build -t language-python:3.6 .`  
 
-`$ docker run -d -it --name "language-python" language-python:3.6`  
-
-現在コンテナが消えるとデータベースなども消えるため永続化しなければならない  
-docker run -d -it --name "language-python" -v language-data:/home/kit/python language-python:3.6  
+`docker run -d -it --name "language-python" -v language-data:/home/kit/python language-python:3.6`  
 ```
 $ crontab -e  
-0 */8 * * * docker exec -it language-python python3 /home/kit/python/src/download_web.py  
+0 */8 * * * docker exec language-python python3 /home/kit/python/src/download_web.py  
 ```
 
 ## Licence
@@ -55,7 +52,9 @@ $ crontab -e
 0 */8 * * * python3 /home/kit/python/src/download_web.py  
 ```
 8時間ごとにホームページが更新されていないか確認し、更新されていればcsvファイルを取ってきて、上位20言語とリポジトリ数をデータベースに格納する  
-cronするときはconfig.pyなど全てのパスを絶対パスで書かなければならない
+cronするときはconfig.pyなど全てのパスを絶対パスで書かなければならない  
+
+httpレスポンスヘッダのlast-modifiedを使ってバリデートする方法もある
 
 グラフ表示  
 
