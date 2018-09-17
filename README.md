@@ -15,7 +15,7 @@ Docker 18.06.1-ce
 
 データベース表示方法
 
-`$ docker exec -it language-python /bin/bash`  
+`$ docker start language-python && docker exec -it language-python /bin/bash`  
 
 `$ cd /home/kit/python/db && sqlite3 language.db`  
 `> select * from language;`
@@ -34,7 +34,12 @@ Docker 18.06.1-ce
 $ crontab -e  
 0 16 * * * docker start language-python && docker exec language-python python3 /home/kit/python/src/download_web.py && docker stop language-python  
 ```
-再起動してもコンテナが自動で建てられ、スクリプトを実行し、コンテナを止めるので、建てたままよりサーバーリソースにも優しいと思う  
+再起動してもコンテナが自動で建てられ、スクリプトを実行し、コンテナを止めるので、建てたままよりサーバーリソースに優しいと思う  
+
+## Unstall
+
+
+
 ## Licence
 
 [MIT]()
