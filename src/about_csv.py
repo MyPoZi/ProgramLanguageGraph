@@ -30,7 +30,8 @@ class AboutCsv:
             print('csv_ERROR:{0}'.format(e))
             sys.exit()
 
-    def read_csv(self, csv_path):
+    @staticmethod
+    def read_csv(csv_path):
         csv_lst = pd.read_csv(csv_path).values.tolist()
         program_language = list()
         program_rep = list()
